@@ -66,9 +66,14 @@ app.use(expressValidator({
 // Connect Fash
 app.use(flash());
 
+// Global vars
+app.use(( req, res, next ) => {
+	res.locals.success_msg 	= req.flash('success_msg');
+	res.locals.error_msg	= req.flash('error_msg');
+	res.locals.error 		= req.flash('error');
 
-
-//
+	next();
+});
 
 // Listen
 app.listen(port, () => {
