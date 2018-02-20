@@ -21,8 +21,25 @@
           </nav>
         </div>
       </header>
-
       <main role="main" class="inner cover">
+        {{#if success_msg}}
+          <div class="notice success">
+            <div class="alert alert-sucess">{{success_msg}}</div>
+          </div>
+        {{/if}}
+
+        {{#if error_msg}}
+          <div class="notice error">
+            <div class="alert alert-danger">{{error_msg}}</div>
+          </div>
+        {{/if}}
+
+        {{#if error}}
+          <div class="notice error">
+            <div class="alert alert-danger">{{error_msg}}</div>
+          </div>
+        {{/if}}
+        
       	{{{body}}}
         
       </main>
