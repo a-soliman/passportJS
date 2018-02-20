@@ -37,6 +37,13 @@ app.use(cookieParser);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+// Express Session
+app.use(session({
+	secret: 'secret',
+	saveUninitialized: true,
+	resave: true
+}));
+
 // Listen
 app.listen(port, () => {
 	console.log(`Server is runing on port ${port}.`);
