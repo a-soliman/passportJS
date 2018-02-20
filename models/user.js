@@ -35,7 +35,7 @@ module.exports.createUser = ( newUser, callback ) => {
 	});
 }
 
-module.exports.getUserByUsername = ( username, callback ) {
+module.exports.getUserByUsername = ( username, callback ) => {
 	let query = { username };
 	User.findOne(query, callback);
 }
@@ -45,4 +45,8 @@ module.exports.comparePassword = (candidatePassword, hash, callback ) => {
 		if ( err ) throw err;
 		callback(null, isMatch);
 	})
+}
+
+module.exports.getUserById = ( id, callback ) => {
+	User.findById(id, callback);
 }
