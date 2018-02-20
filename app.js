@@ -11,9 +11,6 @@ const localStrategy 	= require('passport-local').Strategy;
 const mongo				= require('mongodb');
 const mongoose			= require('mongoose');
 
-mongoose.connect('mongodb://ahmed_soliman:123456@ds143778.mlab.com:43778/passport-auth');
-const db 				= mongoose.connection;
-
 // Init App
 const app = express();
 const port = process.env.PORT || 3000;
