@@ -1,9 +1,21 @@
 <h2 class="cover-heading">Register</h2>
 
+{{#if errors}}
+	{{#each errors}}
+		<div class="notice error">
+			<div class="alert alert-danger">{{ msg }}</div>
+		</div>
+	{{/each}}
+{{/if}}
+
 <form action="/users/register" method="post">
 	<div class="form-group">
 		<label for="name">Name</label>
 		<input name="name" type="text" class="form-control" placeholder="Name">
+	</div>
+	<div class="form-group">
+		<label for="email">Email</label>
+		<input name="email" type="email" class="form-control" placeholder="Email">
 	</div>
 	<div class="form-group">
 		<label for="username">Username</label>
