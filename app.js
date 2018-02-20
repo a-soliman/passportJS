@@ -32,6 +32,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser);
 
+
+// Public Folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 // Listen
 app.listen(port, () => {
 	console.log(`Server is runing on port ${port}.`);
