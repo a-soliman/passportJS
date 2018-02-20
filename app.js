@@ -14,6 +14,9 @@ const mongoose			= require('mongoose');
 mongoose.connect('mongodb://ahmed_soliman:123456@ds143778.mlab.com:43778/passport-auth');
 const db 				= mongoose.connection;
 
+const routes 			= require('./routes/index');
+const users				= require('./routes/users');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
