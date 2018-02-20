@@ -75,6 +75,12 @@ app.use(( req, res, next ) => {
 	next();
 });
 
+// Routes Middleware
+app.use('/', routes);
+app.use('/users', users);
+
+
+
 // Listen
 app.listen(port, () => {
 	console.log(`Server is runing on port ${port}.`);
