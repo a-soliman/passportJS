@@ -44,6 +44,25 @@ app.use(session({
 	resave: true
 }));
 
+// ExpressValidator
+app.use(expressValidator({
+	errorFormatter: function( param, msg, value ) {
+		var namespace	= param.split('.'),
+			root		= namespace.shift(),
+			formParam	= root;
+
+		while ( namespace.length ) {
+			formParam += '[' + namespace.shift() + ']';
+		}
+
+		return {
+			param 	: formParam,
+			msg		: msg,
+			value	: value 
+		};
+	}
+}));
+
 // Listen
 app.listen(port, () => {
 	console.log(`Server is runing on port ${port}.`);
