@@ -1,6 +1,31 @@
 const express		= require('express');
+const passport		= require('password');
+const localStratigy	= require('passport-local').Stratigy;
 const router		= express.Router();
 const User 			= require('../models/user');
+
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.getUserByUsername(username, ( err, user ) => {
+    	if ( err ) throw err;
+    	if ( !user ) {
+    		return done(null, false, { message: 'Unknown User.' })
+    	}
+
+    	User.comparePassword(password, user.password, ( err, isMatch ) => {
+    		if ( err ) throw err;
+    		if( isMatch ) {
+    			return done(null, user);
+    		}
+    		else {
+    			return done(null, false, { message: 'Invalid Password.'});
+    		}
+    	})
+    });
+      
+  }));
+
 
 // GET Login
 router.get('/login', ( req, res ) => {
@@ -8,12 +33,8 @@ router.get('/login', ( req, res ) => {
 });
 
 // POST Login
-router.post('/login', ( req, res ) => {
-	//get the data
-	let username = req.body.username.trim();
-	let password = req.body.password.trim();
-
-	console.log(username, password)
+router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true }), ( req, res ) => {
+	res.redirect('/');
 })
 
 // GET Register
