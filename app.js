@@ -63,6 +63,13 @@ app.use(expressValidator({
 	}
 }));
 
+// Connect Fash
+app.use(flash());
+
+
+
+//
+
 // Listen
 app.listen(port, () => {
 	console.log(`Server is runing on port ${port}.`);
