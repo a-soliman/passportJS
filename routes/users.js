@@ -1,6 +1,6 @@
 const express		= require('express');
-const passport		= require('password');
-const localStratigy	= require('passport-local').Stratigy;
+const passport		= require('passport');
+const LocalStrategy	= require('passport-local').Strategy;
 const router		= express.Router();
 const User 			= require('../models/user');
 
@@ -25,6 +25,16 @@ passport.use(new LocalStrategy(
     });
       
   }));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.getUserById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 
 // GET Login
