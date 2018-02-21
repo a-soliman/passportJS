@@ -19,6 +19,9 @@ const UserSchema = mongoose.Schema({
 	},
 	name: {
 		type: String
+	},
+	googleId: {
+		type: String
 	}
 });
 
@@ -37,6 +40,10 @@ module.exports.createUser = ( newUser, callback ) => {
 
 module.exports.getUserByUsername = ( username, callback ) => {
 	let query = { username };
+	User.findOne(query, callback);
+}
+module.exports.getUserByEmail = ( candidateEmail, callback ) => {
+	let query = { email: candidateEmail };
 	User.findOne(query, callback);
 }
 
