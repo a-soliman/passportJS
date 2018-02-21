@@ -15,6 +15,7 @@
           <h3 class="masthead-brand">Login App</h3>
           <nav class="nav nav-masthead justify-content-center">
             {{#if user}}
+              {{user.email}}
               <a class="nav-link" href="/">Dashboard</a>
               <a class="nav-link" href="/users/logout">Logout</a>
             {{else}}
